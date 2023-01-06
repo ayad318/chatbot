@@ -12,7 +12,7 @@ export function Header() {
                     ChatBot
                 </Text>
             </Navbar.Brand>
-            <Navbar.Content hideIn="xs" variant="underline" activeColor="secondary">
+            <Navbar.Content hideIn="xs" variant="underline" activeColor="error">
                 <Navbar.Link href="#">Home</Navbar.Link>
                 <Navbar.Link isActive href="#">Pricing</Navbar.Link>
                 <Navbar.Link href="#">Blog</Navbar.Link>
@@ -26,7 +26,7 @@ export function Header() {
                     Login
                 </Navbar.Link>
                 <Navbar.Item >
-                    <Button auto flat as={Link} href="#" color="secondary">
+                    <Button auto flat as={Link} href="#" color="error">
                         Sign Up
                     </Button>
                 </Navbar.Item>

@@ -24,7 +24,8 @@ function App({ Component, pageProps }: AppProps) {
 
 
     < NextThemesProvider
-      defaultTheme="system"
+
+      defaultTheme='dark'
       attribute="class"
       value={{
         light: lightTheme.className,
