@@ -2,6 +2,9 @@
 import { createTheme, NextUIProvider } from '@nextui-org/react'
 import { AppProps } from 'next/app'
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import Head from 'next/head';
+import { Header } from '../components/Header';
+
 
 
 const lightTheme = createTheme({
@@ -24,7 +27,6 @@ function App({ Component, pageProps }: AppProps) {
 
 
     < NextThemesProvider
-
       defaultTheme='dark'
       attribute="class"
       value={{
@@ -34,6 +36,10 @@ function App({ Component, pageProps }: AppProps) {
     >
 
       <NextUIProvider>
+        <Head>
+          <title>Ai chatbot</title>
+        </Head>
+        <Header></Header>
         < Component {...pageProps} />
       </NextUIProvider>
     </NextThemesProvider >
