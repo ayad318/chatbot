@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { type Message, ChatLine, LoadingChatLine } from './ChatLine'
 import { useCookies } from 'react-cookie'
 import { Card, Container, Grid, Input, Textarea } from '@nextui-org/react'
-import Table from '@nextui-org/react'
 import { SendButton } from './Button/SendButton'
 import { SendIcon } from './icons/SendIcon'
 
@@ -99,8 +98,8 @@ export function Chat() {
 
     return (
         <Container alignContent='center' justify='center' xl>
-            <Card css={{ h: "75vh" }}>
-                <Card.Body css={{ flexDirection: "column-reverse" }}>
+            <Card >
+                <Card.Body css={{ flexDirection: "column-reverse", h: "73vh" }}>
                     {loading && <LoadingChatLine />}
                     {messages.slice(0).reverse().map(({ message, who }, index) => (
                         <ChatLine key={index} who={who} message={message} />
@@ -108,6 +107,7 @@ export function Chat() {
 
 
                 </Card.Body>
+
                 <Card.Footer >
 
                     <InputMessage
