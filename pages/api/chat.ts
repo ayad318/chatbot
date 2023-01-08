@@ -12,8 +12,8 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
-const botName = 'bot'
-const userName = 'me' // TODO: move to ENV var
+const botName = 'AI'
+const userName = 'News reporter' // TODO: move to ENV var
 const firstMessge = initialMessages[0].message
 
 const openai = new OpenAIApi(configuration)
@@ -47,7 +47,9 @@ export default async function handler(req: any, res: any) {
   const messages = req.body.messages
   const messagesPrompt = generatePromptFromMessages(messages)
   const defaultPrompt = `I am Friendly AI Assistant. \n\nThis is the conversation between AI Bot and a news reporter.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `
-  const finalPrompt = `write 3 replies for this message: ${messages[1].message}\n`
+  const finalPrompt = process.env.AI_PROMPT
+    ? `${process.env.AI_PROMPT}${messagesPrompt}\n${botName}: `
+    : defaultPrompt
 
   const payload = {
     model: 'text-davinci-003',
@@ -59,8 +61,8 @@ export default async function handler(req: any, res: any) {
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
-    stop: ['\n'],
-    // user: req.body?.user,
+    stop: [`${botName}:`, `${userName}:`],
+    user: req.body?.user,
   }
 
   /**
