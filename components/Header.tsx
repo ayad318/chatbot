@@ -11,6 +11,14 @@ export function Header() {
         "Login",
         "Sign Up",
     ];
+    const collapselinks = [
+        "/",
+        "/",
+        "/",
+        "/",
+        "/signin",
+        "/",
+    ];
 
     return (
         <Navbar shouldHideOnScroll isBordered variant="sticky" >
@@ -32,7 +40,7 @@ export function Header() {
                 <Navbar.Item>
                     <ColourSwitch />
                 </Navbar.Item>
-                <Navbar.Link color="inherit" href="#">
+                <Navbar.Link color="inherit" href="/signin">
                     Login
                 </Navbar.Link>
                 <Navbar.Item >
@@ -53,7 +61,7 @@ export function Header() {
                             css={{
                                 minWidth: "100%",
                             }}
-                            href="#"
+                            href={collapselinks[index]}
                         >
                             {item}
                         </Link>
