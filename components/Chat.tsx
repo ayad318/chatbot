@@ -19,6 +19,7 @@ export const initialMessages: Message[] = [
 const InputMessage = ({ input, setInput, sendMessage }: any) => (
     // <div className="mt-6 flex clear-both">
     <Input
+        required
         fullWidth
         clearable
         bordered
@@ -80,7 +81,7 @@ export function Chat() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                messages: newMessages,
+                messages: last10mesages,
                 user: cookie[COOKIE_NAME],
             }),
         })

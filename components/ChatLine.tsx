@@ -30,7 +30,7 @@ export function ChatLine({ who = 'bot', message }: Message) {
     // const formatteMessage = convertNewLines(message)
 
     return (
-        <Container direction='row'
+        <Container
         // direction={
         //     who != 'bot' ? 'row' : 'row-reverse'
         // }
@@ -38,15 +38,15 @@ export function ChatLine({ who = 'bot', message }: Message) {
         >
             {/* <Balancer> */}
 
-            <Avatar size='sm' text={who == 'bot' ? 'Ai' : 'You'} color={who == 'bot' ? 'error' : 'default'} css={who == 'bot' ? {
-            } : { float: "right", position: "relative" }} />
+            {who == 'bot' && <Avatar size='sm' text='Ai' color={who == 'bot' ? 'error' : 'default'} css={who == 'bot' ? {
+            } : { float: "right", position: "relative" }} />}
             <Spacer y={0.5} x={0} />
             <Card isHoverable isPressable css={who == 'bot' ? {
-                mw: "350px",
+                mw: "350px"
             } : { mw: "350px", float: 'right', position: "relative" }} variant="bordered">
 
-                <Card.Body>
-                    <Text>{message}</Text>
+                <Card.Body >
+                    <Text >{message}</Text>
                 </Card.Body>
             </Card>
             {/* </Balancer > */}
