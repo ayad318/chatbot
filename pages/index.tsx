@@ -10,12 +10,18 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
+    <div>
 
-    <Container>
-      <Spacer y={3} />
-      <Row>
+      <Head>
+        <title>ChatBot</title>
+      </Head>
+      <Container>
+        <Spacer y={3} />
+
         < Chat />
-      </Row>
-    </Container >
+
+      </Container >
+    </div>
+
   )
 }

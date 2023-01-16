@@ -44,13 +44,15 @@ export function ChatLine({ who = 'bot', message }: Message) {
             } : { float: "right", position: "relative" }} />}
             <Spacer y={0.5} x={0} />
             <Card isHoverable isPressable css={who == 'bot' ? {
+                w: "auto",
                 mw: "350px"
-            } : { mw: "350px", float: 'right', position: "relative" }} variant="bordered" onPress={() => { navigator.clipboard.writeText(message) }}
+            } : { w: "auto", minWidth: "100px", mw: "350px", float: 'right', position: "relative" }} variant="bordered" onPress={() => { navigator.clipboard.writeText(message) }}
             >
                 <Card.Body >
                     <Row>
 
                         <Text >{message}</Text>
+                        <Spacer x={0.2} ></Spacer>
                         {who == 'bot' && <IconCopy />}
                     </Row>
                 </Card.Body>

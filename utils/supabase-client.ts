@@ -5,7 +5,9 @@ import {
 import { ProductWithPrice } from '../types';
 import type { Database } from '../types_db';
 
+
 export const supabase = createBrowserSupabaseClient<Database>();
+
 
 export const getActiveProductsWithPrices = async (): Promise<
   ProductWithPrice[]
@@ -34,3 +36,5 @@ export const updateUserName = async (user: User, name: string) => {
     })
     .eq('id', user.id);
 };
+
+
