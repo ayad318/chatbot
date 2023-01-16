@@ -98,7 +98,7 @@ export function Chat() {
     }
 
     return (
-        <Container alignContent='center' justify='center' xl>
+        <Container alignContent='center' justify='center' xl >
             <Card >
                 <Card.Body css={{ flexDirection: "column-reverse", h: "73vh" }}>
                     {loading && <LoadingChatLine />}
