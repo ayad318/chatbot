@@ -6,11 +6,13 @@ import { useUser } from "../utils/useUser";
 
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Database } from "../types_db";
+import { useRouter } from "next/router";
 
 
 export function Header() {
     const supabaseClient = useSupabaseClient<Database>();
     const user = useUser();
+    const router = useRouter();
 
     const collapseItems = [
         "Home",
@@ -56,7 +58,7 @@ export function Header() {
                     </Button>
                 </Navbar.Item>}
                 {user.user && <Navbar.Item >
-                    <Button auto rounded color="error" onPress={() => supabaseClient.auth.signOut()}>
+                    <Button auto rounded color="error" onPress={() => { supabaseClient.auth.signOut(); router.push('/') }}>
                         Sign Out
                     </Button>
                 </Navbar.Item>}
