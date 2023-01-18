@@ -1,5 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai'
-
+import { NextApiHandler } from 'next'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
 
@@ -43,7 +44,21 @@ const generatePromptFromMessages = (messages: Message[]) => {
   return prompt
 }
 
-export default async function handler(req: any, res: any) {
+const handler: NextApiHandler = async ( req, res) => {
+
+  // Create authenticated Supabase Client
+  const supabase = createServerSupabaseClient({ req, res })
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session)
+    return res.status(401).json({
+      error: 'not_authenticated',
+      description: 'The user does not have an active session or is not authenticated',
+    })
+    
   const messages = req.body.messages
   const messagesPrompt = generatePromptFromMessages(messages)
   const defaultPrompt = `This is the conversation between AI Bot and a ${userName}.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `
@@ -76,3 +91,4 @@ export default async function handler(req: any, res: any) {
 
   res.status(200).json({ text: firstResponse })
 }
+export default handler;

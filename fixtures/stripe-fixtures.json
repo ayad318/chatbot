@@ -13,6 +13,21 @@
             }
         },
         {
+            "name": "price_hobby_week",
+            "path": "/v1/prices",
+            "method": "post",
+            "params": {
+                "product": "${prod_hobby:id}",
+                "currency": "usd",
+                "billing_scheme": "per_unit",
+                "unit_amount": 500,
+                "recurring": {
+                    "interval": "week",
+                    "interval_count": 1
+                }
+            }
+        },
+        {
             "name": "price_hobby_month",
             "path": "/v1/prices",
             "method": "post",
@@ -49,6 +64,21 @@
             "params": {
                 "name": "Freelancer",
                 "description": "Freelancer product description"
+            }
+        },
+        {
+            "name": "price_freelancer_week",
+            "path": "/v1/prices",
+            "method": "post",
+            "params": {
+                "product": "${prod_freelancer:id}",
+                "currency": "usd",
+                "billing_scheme": "per_unit",
+                "unit_amount": 1000,
+                "recurring": {
+                    "interval": "week",
+                    "interval_count": 1
+                }
             }
         },
         {
@@ -91,6 +121,21 @@
             }
         },
         {
+            "name": "price_startup_week",
+            "path": "/v1/prices",
+            "method": "post",
+            "params": {
+                "product": "${prod_startup:id}",
+                "currency": "usd",
+                "billing_scheme": "per_unit",
+                "unit_amount": 1600,
+                "recurring": {
+                    "interval": "week",
+                    "interval_count": 1
+                }
+            }
+        },
+        {
             "name": "price_startup_month",
             "path": "/v1/prices",
             "method": "post",
@@ -127,6 +172,21 @@
             "params": {
                 "name": "Entreprise",
                 "description": "Entreprise product description"
+            }
+        },
+        {
+            "name": "price_entreprise_week",
+            "path": "/v1/prices",
+            "method": "post",
+            "params": {
+                "product": "${prod_entreprise:id}",
+                "currency": "usd",
+                "billing_scheme": "per_unit",
+                "unit_amount": 2400,
+                "recurring": {
+                    "interval": "week",
+                    "interval_count": 1
+                }
             }
         },
         {

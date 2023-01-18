@@ -49,7 +49,6 @@ function App({
       <SessionContextProvider supabaseClient={supabaseClient}
         initialSession={pageProps.initialSession}>
         <MyUserContextProvider>
-
           <NextUIProvider>
             <Head>
               <title>Ai chatbot</title>
