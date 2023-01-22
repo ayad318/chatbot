@@ -21,7 +21,6 @@ const createCheckoutSession: NextApiHandler = async ( req, res) => {
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        billing_address_collection: 'required',
         customer,
         line_items: [
           {
@@ -31,12 +30,12 @@ const createCheckoutSession: NextApiHandler = async ( req, res) => {
         ],
         mode: 'subscription',
         allow_promotion_codes: true,
-        subscription_data: {
-          trial_from_plan: true,
-          metadata
-        },
+        // subscription_data: {
+        //   trial_from_plan: true,
+        //   metadata
+        // },
         success_url: `${getURL()}/dashboard`,
-        cancel_url: `${getURL()}/`
+        cancel_url: `${getURL()}/pricing`
       });
 
       return res.status(200).json({ sessionId: session.id });

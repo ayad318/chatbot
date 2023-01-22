@@ -4,7 +4,7 @@ import { useUser } from "../utils/useUser";
 import { useState } from "react";
 import { getStripe } from "../utils/stripe-client";
 import { postData } from "../utils/helpers";
-import { Button, Card, Container, Spacer, Text } from "@nextui-org/react";
+import { Button, Card, Container, Row, Spacer, Text } from "@nextui-org/react";
 
 type BillingInterval = 'week' | 'year' | 'month';
 interface Props {
@@ -19,7 +19,7 @@ function Pricing({ products }: Props) {
     const handleCheckout = async (price: Price) => {
         setPriceIdLoading(price.id);
         if (!user) {
-            return router.push('/signin');
+            return router.push('/account/signin');
         }
         if (subscription) {
             return router.push('/account');
@@ -34,6 +34,7 @@ function Pricing({ products }: Props) {
             const stripe = await getStripe();
             stripe?.redirectToCheckout({ sessionId });
         } catch (error) {
+            console.log(error)
             return alert((error as Error)?.message);
         } finally {
             setPriceIdLoading(undefined);
@@ -45,11 +46,12 @@ function Pricing({ products }: Props) {
     return (
         <Container as="center">
             <Button.Group color="gradient" ghost>
-                <Button onPress={() => setBillingInterval('week')}>Weekly</Button>
+                <Button ghost onPress={() => setBillingInterval('week')}>Weekly</Button>
                 <Button onPress={() => setBillingInterval('month')}>Monthly</Button>
                 <Button onPress={() => setBillingInterval('year')}>Yearly</Button>
             </Button.Group>
             <Spacer y={2} />
+            {/* <Row> */}
             {
                 products.map((product) => {
                     const price = product?.prices?.find(
@@ -63,6 +65,9 @@ function Pricing({ products }: Props) {
                     }).format((price?.unit_amount || 0) / 100);
                     return (
                         <Card
+                            as="center"
+                            variant="shadow"
+                            css={{ w: 'fit-content' }}
                             key={product.id}
                         >
                             <Card.Header>
@@ -88,7 +93,6 @@ function Pricing({ products }: Props) {
                                 <Button
                                     disabled={isLoading}
                                     onPress={() => handleCheckout(price)}
-                                    className="mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900"
                                 >
                                     {product.name === subscription?.prices?.products?.name
                                         ? 'Manage'
@@ -99,6 +103,7 @@ function Pricing({ products }: Props) {
                     );
                 })
             }
+            {/* </Row> */}
         </Container >
     )
 

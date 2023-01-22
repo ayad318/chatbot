@@ -44,7 +44,7 @@ const SignUp = () => {
 
     useEffect(() => {
         if (!user) {
-            router.replace('/signin');
+            router.replace('/account/signin');
         }
     }, [router, user]);
 

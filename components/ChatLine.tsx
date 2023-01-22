@@ -50,7 +50,6 @@ export function ChatLine({ who = 'bot', message }: Message) {
             >
                 <Card.Body >
                     <Row>
-
                         <Text >{message}</Text>
                         <Spacer x={0.2} ></Spacer>
                         {who == 'bot' && <IconCopy />}
