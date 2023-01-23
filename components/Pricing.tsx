@@ -3,7 +3,7 @@ import { Price, ProductWithPrice } from "../types";
 import { useUser } from "../utils/useUser";
 import { useState } from "react";
 import { getStripe } from "../utils/stripe-client";
-import { postData } from "../utils/helpers";
+import { getURL, postData } from "../utils/helpers";
 import { Button, Card, Container, Row, Spacer, Text } from "@nextui-org/react";
 
 type BillingInterval = 'week' | 'year' | 'month';

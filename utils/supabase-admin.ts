@@ -77,6 +77,7 @@ const createOrRetrieveCustomer = async ({
     console.log(`New customer created and inserted for ${uuid}.`);
     return customer.id;
   }
+  console.log(`customer exist? ${data.stripe_customer_id}`)
   return data.stripe_customer_id;
 };
 
