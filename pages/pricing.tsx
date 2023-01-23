@@ -10,7 +10,6 @@ interface Props {
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
     const products = await getActiveProductsWithPrices();
-
     return {
         props: {
             products
