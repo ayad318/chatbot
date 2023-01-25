@@ -4,23 +4,26 @@ import { useUser } from "../utils/useUser";
 import { useRouter } from "next/router";
 
 const Dashboard = () => {
-    const user = useUser();
+    const { user, isLoading, subscription } = useUser();
     const router = useRouter();
     const handleRoutes = (path: string) => {
         router.push(path)
     }
-    if (user.user)
-        return (
-            <div>
-
-                <Container >
-                    <Spacer y={2} />
-                    < Chat />
-
-                </Container >
-            </div >
-        )
-    else if (user.isLoading) {
+    if (user) {
+        if (subscription)
+            return (
+                <div>
+                    <Container >
+                        <Spacer y={2} />
+                        < Chat />
+                    </Container >
+                </div >
+            )
+        else {
+            router.push('/pricing')
+        }
+    }
+    else if (isLoading) {
         <div>
 
             <Spacer y={5} />

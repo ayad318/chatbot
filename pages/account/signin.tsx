@@ -1,14 +1,15 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 import { Container, Card, Input, Spacer, Row, Checkbox, Button, Text } from '@nextui-org/react';
 import Link from 'next/link';
 import { Database } from '../../types_db';
+import { useUser } from '../../utils/useUser';
 
 const SignIn = () => {
     const router = useRouter();
-    const user = useUser();
+    const { user, subscription } = useUser();
     const supabaseClient = useSupabaseClient<Database>();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -24,7 +25,10 @@ const SignIn = () => {
     }
     useEffect(() => {
         if (user) {
-            router.replace('/dashboard');
+            if (subscription)
+                router.replace('/dashboard');
+            else
+                router.replace('/pricing');
         }
     }, [router, user]);
 

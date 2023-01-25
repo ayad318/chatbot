@@ -3,6 +3,7 @@ import { NextApiHandler } from 'next'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
+import { stripe } from '../../utils/stripe';
 
 // break the app if the API key is missing
 if (!process.env.OPENAI_API_KEY) {
@@ -49,6 +50,7 @@ const handler: NextApiHandler = async ( req, res) => {
   // Create authenticated Supabase Client
   const supabase = createServerSupabaseClient({ req, res })
   // Check if we have a session
+
   const {
     data: { session },
   } = await supabase.auth.getSession()
