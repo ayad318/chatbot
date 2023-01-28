@@ -9,14 +9,10 @@ import { SendIcon } from './icons/SendIcon'
 const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 
 // default first message to display in UI (not necessary to define the prompt)
-export const initialMessages: Message[] = [
-    {
-        who: 'bot',
-        message: 'Hi! I’m A friendly AI assistant. Ask me anything!',
-    },
-]
+export const initialMessages: Message[] = []
 // TODO: fix sanitize
 const InputMessage = ({ input, setInput, sendMessage }: any) => (
+
     // <div className="mt-6 flex clear-both">
     <Input
         required
@@ -56,6 +52,7 @@ export function Chat() {
     const [input, setInput] = useState('')
     const [loading, setLoading] = useState(false)
     const [cookie, setCookie] = useCookies([COOKIE_NAME])
+
 
     useEffect(() => {
         if (!cookie[COOKIE_NAME]) {

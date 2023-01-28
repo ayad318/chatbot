@@ -18,13 +18,19 @@ export function Header() {
         "Home",
         "Pricing",
         "Blog",
-        "About",
     ];
     const collapselinks = [
         "/",
         "/pricing",
         "/blog",
-        "/about",
+    ];
+    const collapseItems2 = [
+        "Dashboars",
+        "Blog",
+    ];
+    const collapselinks2 = [
+        "/Dashboard",
+        "/blog",
     ];
 
 
@@ -41,10 +47,10 @@ export function Header() {
                 </Text>
             </Navbar.Brand>
             <Navbar.Content hideIn="xs" variant="underline-rounded" activeColor="error">
-                <Navbar.Link href="/">Home</Navbar.Link>
-                <Navbar.Link isActive href="/pricing">Pricing</Navbar.Link>
+                {!user.user && <Navbar.Link href="/">Home</Navbar.Link>}
+                {!user.user && <Navbar.Link isActive href="/pricing">Pricing</Navbar.Link>}
+                {user.user && <Navbar.Link href="/dashboard">dashboard</Navbar.Link>}
                 <Navbar.Link href="/blog">Blog</Navbar.Link>
-                <Navbar.Link href="/about">About</Navbar.Link>
             </Navbar.Content>
 
             <Navbar.Content >
@@ -67,7 +73,20 @@ export function Header() {
                 <Navbar.CollapseItem>
                     <ColourSwitch />
                 </Navbar.CollapseItem>
-                {collapseItems.map((item, index) => (
+                {!user.user && collapseItems.map((item, index) => (
+                    <Navbar.CollapseItem key={item}>
+
+                        <Link
+                            color="inherit"
+                            css={{
+                                minWidth: "100%",
+                            }}
+                            href={collapselinks[index]}
+                        >
+                            {item}
+                        </Link>
+                    </Navbar.CollapseItem>
+                ))}{user.user && collapseItems2.map((item, index) => (
                     <Navbar.CollapseItem key={item}>
 
                         <Link
