@@ -5,6 +5,7 @@ import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
 import { stripe } from '../../utils/stripe';
 
+
 // break the app if the API key is missing
 if (!process.env.OPENAI_API_KEY) {
   throw new Error('Missing Environment Variable OPENAI_API_KEY')
@@ -14,7 +15,7 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
-const botName = 'AI'
+const botName = 'Human'
 const userName = 'user' // TODO: move to ENV var
 const firstMessge = initialMessages[0].message
 
@@ -22,6 +23,7 @@ const openai = new OpenAIApi(configuration)
 
 // @TODO: unit test this. good case for unit testing
 const generatePromptFromMessages = (messages: Message[]) => {
+  
   console.log('== INITIAL messages ==', messages)
 
   let prompt = ''
@@ -46,6 +48,7 @@ const generatePromptFromMessages = (messages: Message[]) => {
 }
 
 const handler: NextApiHandler = async ( req, res) => {
+  
 
   // Create authenticated Supabase Client
   const supabase = createServerSupabaseClient({ req, res })
@@ -63,7 +66,7 @@ const handler: NextApiHandler = async ( req, res) => {
     
   const messages = req.body.messages
   const messagesPrompt = generatePromptFromMessages(messages)
-  const defaultPrompt = `This is the conversation between AI Bot and a ${userName}.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `
+  const defaultPrompt = `This is the conversation between ${botName} and a ${userName}.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `
   const finalPrompt = process.env.AI_PROMPT
     ? `${process.env.AI_PROMPT}${messagesPrompt}\n${botName}: `
     : defaultPrompt

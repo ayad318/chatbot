@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { Database } from '../types_db';
 import { MyUserContextProvider } from '../utils/useUser';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
-
+import { Analytics } from '@vercel/analytics/react';
 
 
 export const lightTheme = createTheme({
@@ -55,6 +55,7 @@ function App({
             </Head>
             <Header></Header>
             < Component {...pageProps} />
+            <Analytics />
           </NextUIProvider>
         </MyUserContextProvider>
       </SessionContextProvider>
