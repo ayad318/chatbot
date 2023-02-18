@@ -125,7 +125,7 @@ const SignUp = () => {
                     {error && <Text as={'center'} color='error'>{error}</Text>}
                     {message && <Text as={'center'} >{message}</Text>}
                     <Row justify="center">
-                        <Link href='/account/signin'>Already have an account? Sign in</Link>
+                        <Link onPress={() => {router.push('/account/signin')}}>Already have an account? Sign in</Link>
                     </Row>
                     <Spacer y={1} />
                 </Card>

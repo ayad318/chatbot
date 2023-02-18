@@ -25,7 +25,7 @@ export function Header() {
         "/blog",
     ];
     const collapseItems2 = [
-        "Dashboars",
+        "Dashboad",
         "Blog",
     ];
     const collapselinks2 = [
@@ -42,24 +42,21 @@ export function Header() {
             <Navbar.Toggle showIn="xs" />
             <Navbar.Brand>
                 <MainLogo />
-                <Text b color="inherit" hideIn='xs'>
-                    ChatBot
-                </Text>
             </Navbar.Brand>
             <Navbar.Content hideIn="xs" variant="underline-rounded" activeColor="error">
-                {!user.user && <Navbar.Link href="/">Home</Navbar.Link>}
-                {!user.user && <Navbar.Link isActive href="/pricing">Pricing</Navbar.Link>}
-                {user.user && <Navbar.Link href="/dashboard">dashboard</Navbar.Link>}
-                <Navbar.Link href="/blog">Blog</Navbar.Link>
+                {!user.user && <Navbar.Link onPress={() =>{router.push("/")}}>Home</Navbar.Link>}
+                {!user.user && <Navbar.Link isActive onPress={() =>{router.push("/pricing")}}>Pricing</Navbar.Link>}
+                {user.user && <Navbar.Link onPress={() =>{router.push("/dashboard")}}>dashboard</Navbar.Link>}
+                <Navbar.Link onPress={() =>{router.push("/blog")}}>Blog</Navbar.Link>
             </Navbar.Content>
 
             <Navbar.Content >
                 <Navbar.Item hideIn="xs">
                     <ColourSwitch />
                 </Navbar.Item>
-                {!user.user && <Navbar.Link href="/account/signin">Sign In</Navbar.Link>}
+                {!user.user && <Navbar.Link onPress={() => {router.push('/account/signin')}}>Sign In</Navbar.Link>}
                 {!user.user && <Navbar.Item >
-                    <Button auto rounded as={Link} href="/account/signup" color="error">
+                    <Button auto rounded as={Link} onPress={() => {router.push('/account/signup')}} color="error">
                         Sign Up
                     </Button>
                 </Navbar.Item>}
@@ -81,7 +78,7 @@ export function Header() {
                             css={{
                                 minWidth: "100%",
                             }}
-                            href={collapselinks[index]}
+                            onPress={() =>{router.push(collapselinks[index])}}
                         >
                             {item}
                         </Link>
@@ -94,7 +91,7 @@ export function Header() {
                             css={{
                                 minWidth: "100%",
                             }}
-                            href={collapselinks[index]}
+                            onPress={() =>{router.push(collapselinks2[index])}}
                         >
                             {item}
                         </Link>
