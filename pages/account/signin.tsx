@@ -30,7 +30,7 @@ const SignIn = () => {
             else
                 router.replace('/pricing');
         }
-    }, [router, user]);
+    }, [router, subscription, user]);
 
     if (!user)
         return (

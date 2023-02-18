@@ -45,6 +45,7 @@ const ColourSwitch = () => {
     const { isDark, type } = useTheme();
 
     return (
+        
         <div>
             <Switch
                 checked={isDark}

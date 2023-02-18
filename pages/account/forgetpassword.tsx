@@ -70,7 +70,7 @@ const ForgetPassword = () => {
                     {message && <Text as={'center'} >{message}</Text>}
                     <Spacer y={1} />
                     <Row justify="center">
-                        <Link href='/account/signin'>Already have an account? Signin</Link>
+                        <Link  href='/account/signin'>Already have an account? Signin</Link>
                     </Row>
                     <Spacer y={1} />
                     <Row
